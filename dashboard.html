@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <h1>Dashboard</h1>
+    <p>Welcome, {{ session['username'] }}!</p>
+    
+    <div class="dashboard-cards">
+        <div class="card">
+            <h2>Your Tasks</h2>
+            <a href="{{ url_for('tasks') }}" class="btn">View Tasks</a>
+        </div>
+        
+        {% if session['role'] == 'admin' %}
+        <div class="card">
+            <h2>User Management</h2>
+            <a href="{{ url_for('users') }}" class="btn">Manage Users</a>
+        </div>
+        {% endif %}
+    </div>
+{% endblock %}

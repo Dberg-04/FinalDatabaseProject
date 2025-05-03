@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Users{% endblock %}
+
+{% block content %}
+    <h1>User Management</h1>
+    
+    <div class="user-list">
+        {% for user in users %}
+            <div class="user">
+                <h3>{{ user[1] }}</h3>
+                <p>Role: {{ user[2] }}</p>
+                {% if user[2] != 'admin' %}
+                    <a href="{{ url_for('promote_user', user_id=user[0]) }}" class="btn">Promote to Admin</a>
+                {% endif %}
+                <a href="{{ url_for('delete_user', user_id=user[0]) }}" class="btn btn-danger">Delete</a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
